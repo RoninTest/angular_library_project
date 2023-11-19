@@ -3,21 +3,29 @@
 </h3>
 
 <div class="input-group">
-  <input type="text" class="form-control">
+  <input type="text" #todotext class="form-control"
+         placeholder="Bir kitap ismi giriniz">
   <div class="input-group-append">
-    <button class="btn btn-primary">Add</button>
+    <button class="btn btn-primary"
+            (click)="addItem(todotext.value); todotext.value = ''">Add
+    </button>
   </div>
   <table class="table table-striped table-bordered">
     <thead>
     <tr>
+      <th>Number</th>
       <th>Book</th>
       <th>Action</th>
+      <th>My Reading List</th>
     </tr>
     </thead>
-    <tbody>
-    <tr *ngFor="let item of getBookItems(); let i=index">
+    <tbody *ngIf="getReadingBookItems().length > 0 ; else emptyListReadingList">
+    <tr *ngFor="let item of getReadingBookItems(); let i=index">
       <td>{{i + 1}}</td>
       <td>{{item.description}}</td>
+      <td>
+        <input type="checkbox" [(ngModel)]="item.action">
+      </td>
       <td [ngSwitch]="item.action">
         <span *ngSwitchCase="true">
           Yes
@@ -28,6 +36,42 @@
       </td>
     </tr>
     </tbody>
+    <thead>
+    <tr>
+      <th>Number</th>
+      <th>Book</th>
+      <th>Action</th>
+      <th>My Read List</th>
+    </tr>
+    </thead>
+    <tbody *ngIf="getReadedBookItems().length > 0; else emptyListReadList">
+    <tr *ngFor="let item of getReadedBookItems(); let i=index">
+      <td>{{i + 1}}</td>
+      <td>{{item.description}}</td>
+      <td>
+        <input type="checkbox" [(ngModel)]="item.action">
+      </td>
+      <td [ngSwitch]="item.action">
+        <span *ngSwitchCase="true">Yes</span>
+        <span *ngSwitchCase="false">No</span>
+      </td>
+    </tr>
+    </tbody>
+    <ng-template #emptyListReadingList>
+      <tbody>
+      <tr>
+        <td colspan="4">Okunacak kitabınız bulunmuyor</td>
+      </tr>
+      </tbody>
+    </ng-template>
+
+    <ng-template #emptyListReadList>
+      <tbody>
+      <tr>
+        <td colspan="4">Okunmuş kitabınız bulunmuyor</td>
+      </tr>
+      </tbody>
+    </ng-template>
   </table>
 </div>
 
