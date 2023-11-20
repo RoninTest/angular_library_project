@@ -7,17 +7,21 @@ import {FormsModule} from "@angular/forms";
 import {LibraryModel} from "./app/models/librarymodel";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDividerModule} from '@angular/material/divider';
+import {EmptyReadListComponent} from "./app/template/emptyReadList.component";
+import {EmptyReadingListComponent} from "./app/template/emptyReadingList.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     ReadinglistComponent,
+    EmptyReadListComponent,
+    EmptyReadingListComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatDividerModule
+    MatDividerModule,
   ],
   providers: [LibraryModel],
   bootstrap: [AppComponent]
