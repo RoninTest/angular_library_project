@@ -3,11 +3,11 @@ export class LibraryModel {
   bookItems;
 
   constructor() {
-    this.library = "İstanbul Ataturk";
+    this.library = "My";
     this.bookItems = [
-      new BookItems("Sefiller", true),
-      new BookItems("Otomatik Portakal", false),
-      new BookItems("Beyaz İnci", false)
+      new BookItems("The Metamorphosis", true),
+      new BookItems("To Kill a Mockingbird", false),
+      new BookItems("Dracula", false)
     ];
   }
 }
